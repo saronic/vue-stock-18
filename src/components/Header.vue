@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <router-link tag="li" activeClass="active" to="/portfolio"><a>Portfolio</a></router-link>
-          <router-link tag="li" activeClass="active" to="/stocks"><a>Portfolio</a></router-link>
+          <router-link tag="li" activeClass="active" to="/stocks"><a>Stocks</a></router-link>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">End Day</a></li>
