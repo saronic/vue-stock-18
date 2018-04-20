@@ -10,10 +10,10 @@ const mutations = {
   },
   rnd_stocks(state) {
 
-  } 
+  }
 };
 
-const actios = {
+const actions = {
   buyStock: ({ commit }, order) => {
 
   },
@@ -35,5 +35,5 @@ export default {
   state,
   mutations,
   getters,
-  actios,
+  actions,
 }

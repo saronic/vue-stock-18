@@ -10,6 +10,8 @@ const router = new VueRouter({
   routes,
 });
 
+console.log('in main.js: ', store.getters);
+
 new Vue({
   el: '#app',
   router,
