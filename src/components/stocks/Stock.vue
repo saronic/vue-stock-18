@@ -8,7 +8,7 @@
       </div>
       <div class="panel-body">
         <div class="pull-left">
-          <input 
+          <input
             type="number"
             class="form-control"
             placeholder="Quantity"
@@ -16,7 +16,7 @@
             @input="consoleLog">
         </div>
         <div class="pull-right">
-          <button class="btn btn-primary" 
+          <button class="btn btn-primary"
             @click="buyStock"
             :disabled="quantity <= 0">Buy</button>
         </div>
@@ -41,6 +41,7 @@ export default {
         quantity: this.quantity,
       }
       console.log(order);
+      this.$store.dispatch('buyStock', order);
       this.quantity = 0;
     },
     consoleLog() {
