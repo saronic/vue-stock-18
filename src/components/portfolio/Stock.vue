@@ -1,6 +1,6 @@
 <template>
   <div class="col-sm-6 col-md-4">
-    <div class="panel panel-success">
+    <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">
           Name: {{ stock.name }}
@@ -13,12 +13,11 @@
             type="number"
             class="form-control"
             placeholder="Quantity"
-            v-model="quantity"
-            @input="consoleLog">
+            v-model="quantity">
         </div>
         <div class="pull-right">
           <button class="btn btn-primary"
-            @click="sellStock"
+            @click="sellThisStock"
             :disabled="quantity <= 0">Sell</button>
         </div>
       </div>
@@ -37,21 +36,21 @@ export default {
     };
   },
   methods: {
-    ...mapActions([
-      'sellStock',
-    ]),
-    sellStock() {
+    ...mapActions(['sellStock']),
+    sellThisStock() {
       const order = {
         stockId: this.stock.id,
         stockPrice: this.stock.price,
         quantity: this.quantity,
-      }
-
+      };
+      console.log(order);
+      this.sellStock(order);
+      this.quantity = 0;
     },
     consoleLog() {
       console.log(this.quantity, Number.isInteger(this.quantity));
-    }
-  }
+    },
+  },
 };
 </script>
 
