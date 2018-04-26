@@ -14,7 +14,9 @@
         <strong class="navbar-text navbar-right">Funds: {{ funds | currency }}</strong>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" @click="endDay">End Day</a></li>
-          <li class="dropdown">
+          <li class="dropdown"
+            :class="{open: isDropdownOpen}"
+            @click="isDropdownOpen=!isDropdownOpen">
             <a href="#"
               class="dropdown-toggle"
               data-toggle="dropdown"
@@ -24,8 +26,8 @@
                 Dropdown <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Save Data</a></li>
-              <li><a href="#">Load Data</a></li>
+              <li><a href="#" @click="saveData">Save Data</a></li>
+              <li><a href="#" @click="loadData">Load Data</a></li>
             </ul>
           </li>
         </ul>
@@ -38,15 +40,34 @@
 import { mapActions } from 'vuex';
 
 export default {
+  data() {
+    return {
+      isDropdownOpen: false,
+    };
+  },
   computed: {
     funds() {
       return this.$store.getters.funds;
     },
   },
   methods: {
-    ...mapActions(['randomizeStocks']),
+    ...mapActions({
+      randomizeStocks: 'randomizeStocks',
+      fetchData: 'loadData',
+    }),
     endDay() {
       this.randomizeStocks();
+    },
+    saveData() {
+      const data = {
+        funds: this.$store.getters.funds,
+        stockPortfolio: this.$store.getters.stockPortfolio,
+        stocks: this.$store.getters.stocks,
+      };
+      this.$http.put('data.json', data);
+    },
+    loadData() {
+      this.fetchData();
     },
   },
 };
