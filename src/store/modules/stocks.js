@@ -9,8 +9,10 @@ const mutations = {
     state.stocks = stocks;
   },
   rnd_stocks(state) {
-
-  }
+    state.stocks.forEach(stock => {
+      stock.price = Math.round(stock.price * (1 + Math.random() - 0.5));
+    });
+  },
 };
 
 const actions = {
@@ -22,13 +24,13 @@ const actions = {
   },
   randomizeStocks: ({ commit }) => {
     commit('rnd_stocks');
-  }
+  },
 };
 
 const getters = {
   stocks: state => {
     return state.stocks;
-  }
+  },
 };
 
 export default {
@@ -36,4 +38,4 @@ export default {
   mutations,
   getters,
   actions,
-}
+};
